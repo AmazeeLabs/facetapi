@@ -99,12 +99,12 @@ class FacetapiWidgetLinks extends FacetapiWidget {
 
       // Initializes variables passed to theme hook.
       $variables = array(
-        'text' => $item['#markup'],
+        'text' => !empty($item['#markup']) ? $item['#markup'] : '',
         'path' => $item['#path'],
         'count' => $item['#count'],
         'options' => array(
           'attributes' => $attributes,
-          'html' => $item['#html'],
+          'html' => !empty($item['#html']) ? $item['#html'] : '',
           'query' => $item['#query'],
         ),
       );
@@ -131,7 +131,7 @@ class FacetapiWidgetLinks extends FacetapiWidget {
       }
 
       // Gets theme hook, adds last minute classes.
-      $class = ($item['#active']) ? 'facetapi-active' : 'facetapi-inactive';
+      $class = (!empty($item['#active'])) ? 'facetapi-active' : 'facetapi-inactive';
       $variables['options']['attributes']['class'][] = $class;
 
       // Themes the link, adds row to items.
